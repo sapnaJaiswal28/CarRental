@@ -1,0 +1,117 @@
+<div class="container-fluid">
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-warning text-dark fw-bold">
+          <i class="fa fa-list"></i> Booking List
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            @if (bookingList.length > 0) {
+            @for (item of bookingList; track $index) {
+            <div class="col">
+              <div class="card car-card h-100">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <img src="https://via.placeholder.com/100x60" class="img-thumbnail me-3" alt="Car">
+                    <div>
+                      <h5 class="card-title mb-1">{{item.customerName}}</h5>
+                      <p class="mb-0"><i class="fa fa-map-marker"></i> {{item.customerCity}}</p>
+                      <p class="mb-0"><i class="fa fa-phone"></i> {{item.mobileNo}}</p>
+                      <p class="mb-0"><i class="fa fa-envelope"></i> {{item.email}}</p>
+                    </div>
+                  </div>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Booking ID:</strong> {{item.bookingId}}</li>
+                    <li class="list-group-item"><strong>Car ID:</strong> {{item.carId}}</li>
+                    <li class="list-group-item"><strong>Date:</strong> {{item.bookingDate | date:'dd-MM-yy'}}</li>
+                    <li class="list-group-item"><strong>Discount:</strong> {{item.discount }}</li>
+                    <li class="list-group-item"><strong>Total:</strong> {{item.totalBillAmount}}</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-end">
+                  <button class="btn btn-sm btn-primary me-2" (click)="onEditBooking(item)"><i class="fa fa-pencil"></i>
+                    Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="onDeleteBooking(item.bookingId)"><i
+                      class="fa fa-trash"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+            }
+            }@else {
+            <div class="text-center py-5">
+              <i class="fa fa-spinner fa-spin fa-2x text-warning"></i>
+              <p class="mt-2">Loading bookings...</p>
+            </div>
+
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Booking Form (col-4) -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-warning text-dark fw-bold">
+          <i class="fa fa-calendar-check-o"></i> New Booking
+        </div>
+        <div class="card-body">
+          <form [formGroup]="bookingForm">
+            <div class="row g-3">
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-user form-icon"></i>
+                <input type="text" class="form-control" formControlName="customerName" placeholder="Customer Name">
+              </div>
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-map-marker form-icon"></i>
+                <input type="text" class="form-control" formControlName="customerCity" placeholder="City">
+              </div>
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-phone form-icon"></i>
+                <input type="text" class="form-control" formControlName="mobileNo" placeholder="Mobile No">
+              </div>
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-envelope form-icon"></i>
+                <input type="email" class="form-control" formControlName="email" placeholder="Email">
+              </div>
+              <div class="col-md-6 position-relative">
+                <input type="text" class="form-control" formControlName="bookingId" placeholder="Booking ID">
+
+              </div>
+              <div class="col-md-6 position-relative">
+
+                <label>Car ID</label>
+                <select formControlName="carId" class="form-select">
+                  @for (item of carList; track $index) {
+                  <option [value]="item.carId">{{item.regNo}}</option>
+                  }
+                </select>
+              </div>
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-calendar form-icon"></i>
+                <input type="date" class="form-control" formControlName="bookingDate" placeholder="Booking Date">
+              </div>
+              <div class="col-md-6 position-relative">
+                <i class="fa fa-percent form-icon"></i>
+                <input type="text" class="form-control" formControlName="discount" placeholder="Discount (%)">
+              </div>
+              <div class="col-md-12 position-relative">
+                <i class="fa fa-money form-icon"></i>
+                <input type="text" class="form-control" formControlName="totalBillAmount"
+                  placeholder="Total Bill Amount">
+              </div>
+            </div>
+            <div class="text-end mt-3">
+              <button type="submit" class="btn btn-success me-2" (click)="onSave()"><i class="fa fa-save"></i>
+                Save</button>
+              <button type="submit" class="btn btn-success me-2" (click)="onUpdateCar()"><i class="fa fa-save"></i>
+                Update</button>
+              <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i> Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

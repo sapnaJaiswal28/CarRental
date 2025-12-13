@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-warning text-dark fw-bold">
+          <i class="fa fa-list"></i> Custome List
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card car-card h-100">
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>ID:</strong> {{ Customer.customerId }} </li>
+                    <li class="list-group-item"><strong>Name:</strong> {{ Customer.customerName }}</li>
+                    <li class="list-group-item"><strong>City:</strong> {{ Customer.customerCity }}</li>
+                    <li class="list-group-item"><strong>Mobile:</strong> {{ Customer.mobileNo }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ Customer.email }}</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-end">
+                  <button class="btn btn-sm btn-primary me-2"><i class="fa fa-pencil"></i> Edit</button>
+                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-warning text-dark fw-bold">
+          <i class="fa fa-user-plus"> </i>Add New Customer
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <!-- Customer ID -->
+            <div class="mb-3">
+              <label for="customerId" class="form-label">Customer ID</label>
+              <input type="number" id="customerId" class="form-control" formControlName="customerId">
+            </div>
+
+            <!-- Customer Name -->
+            <div class="mb-3">
+              <label for="customerName" class="form-label">Customer Name</label>
+              <input type="text" id="customerName" class="form-control" formControlName="customerName">
+            </div>
+
+            <!-- Customer City -->
+            <div class="mb-3">
+              <label for="customerCity" class="form-label">Customer City</label>
+              <input type="text" id="customerCity" class="form-control" formControlName="customerCity">
+            </div>
+
+            <!-- Mobile No -->
+            <div class="mb-3">
+              <label for="mobileNo" class="form-label">Mobile No</label>
+              <input type="text" id="mobileNo" class="form-control" formControlName="mobileNo">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" formControlName="email">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-end">
+              <button type="submit" class="btn btn-success">
+                <i class="fa fa-save"></i> Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
