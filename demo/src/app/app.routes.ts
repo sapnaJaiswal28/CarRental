@@ -6,6 +6,7 @@ import { Vehicles } from './pages/vehicles/vehicles';
 import { Booking } from './pages/booking/booking';
 import { Customer } from './pages/customer/customer';
 import { authGuardGuard } from './auth-guard-guard';
+import { PageNotFount } from './page-not-fount/page-not-fount';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,11 @@ export const routes: Routes = [
         path: 'customer',
         component: Customer,
         canActivate: [authGuardGuard],
+      },
+      {
+        path: '**',
+        component: PageNotFount,
+       
       },
     ],
   },
